@@ -1,4 +1,4 @@
-import {characters} from "../rickAndMortyCharacters";
+import {characters} from "../RickAndMortyCharacters";
 import Character from "../rick_and_morty/RickAndMorty";
 
 export default function Persons () {
