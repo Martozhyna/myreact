@@ -6,21 +6,34 @@ import {postValidator} from "../../validators";
 import {postsService} from "../../services";
 
 
-function PostForm ({setPosts}) {
+function PostForm ({setPosts,postForUpdate,setPostForUpdate}) {
     let {register,handleSubmit,reset,formState:{errors,isValid},setValue} = useForm({resolver: joiResolver(postValidator),mode: "all"});
 
     useEffect(() => {
-        setValue('userId', '1')
-       setValue ('title', 'Basic')
-        setValue('body', 'Lorem ipsum')
-    }, []);
+        if (postForUpdate){
+            setValue('userId', postForUpdate.userId, {shouldValidate: true})
+            setValue ('title', postForUpdate.title,{shouldValidate: true})
+            setValue('body', postForUpdate.body,{shouldValidate: true})
+        }
+
+    }, [postForUpdate,setValue]);
 
     const submit = async (post) => {
-        let {data} = await postsService.create(post)
-        console.log(data);
-        setPosts(post => [...post, data]);
+        if (postForUpdate) {
+            let {data} = await postsService.updateById(postForUpdate.id, post);
+            setPosts((posts) => {
+                let findPost = posts.find(value => value.id === postForUpdate.id);
+                Object.assign(findPost, data);
+                setPostForUpdate(null);
+                return [...posts]
+            })
+        } else {
+            let {data} = await postsService.create(post);
+            console.log(data);
+            setPosts(post => [...post, data]);
+        }
         reset()
-    }
+    };
 
 
 
@@ -30,7 +43,7 @@ function PostForm ({setPosts}) {
             {errors.userId && <span>{errors.userId.message}</span>}
             <input type="text" placeholder={'title'} {...register('title')}/>
             <input type="text" placeholder={'body'} {...register('body')}/>
-            <button>Save</button>
+            <button disabled={!isValid}>{postForUpdate ? 'Update':'Save'}</button>
         </form>
     )
 }

@@ -6,17 +6,21 @@ import {Post} from "../Post/Post";
 
 function Posts () {
     let [posts, setPosts] = useState([]);
+
+    let [postForUpdate, setPostForUpdate] = useState(null);
+
+
     useEffect(()=>{
         postsService.getAll().then(({data}) => setPosts(data));
     },[])
     return (
         <div>
             <div>
-                <PostForm setPosts={setPosts}/>
+                <PostForm setPosts={setPosts} setPostForUpdate={setPostForUpdate} postForUpdate={postForUpdate}/>
             </div>
             <div>
                 {
-                    posts.map(value => <Post key={value.id} item={value} setPosts={setPosts}/>)
+                    posts.map(value => <Post key={value.id} item={value} setPosts={setPosts} setPostForUpdate={setPostForUpdate} />)
                 }
             </div>
 
