@@ -1,0 +1,9 @@
+.Users{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    border: 2px solid #C34271;
+
+}

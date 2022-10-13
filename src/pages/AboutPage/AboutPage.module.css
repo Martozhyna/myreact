@@ -1,0 +1,7 @@
+.AboutPage{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid lightcoral;
+    border-radius: 20px;
+}

@@ -1,0 +1,7 @@
+.PostPage{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    border-radius: 20px;
+    border: 2px solid #C34271;
+}

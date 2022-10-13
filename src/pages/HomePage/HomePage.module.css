@@ -1,0 +1,9 @@
+.HomePage{
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #C34271;
+    border-radius: 20px;
+    background: #F070A1;
+}

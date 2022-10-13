@@ -1,0 +1,23 @@
+.Post{
+    text-align: center;
+    margin: 10px;
+    border: 2px solid #C34271;
+    border-radius: 20px;
+    background: #F070A1;
+}
+
+.Post > button{
+    margin: 10px;
+    font-size: 30px;
+    border-radius: 5px;
+    border: 1px solid #12C998;
+    background: #16FFBD;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.Post > button:hover{
+    font-size: 50px;
+    background: #12C998;
+    border: #439F76 ;
+}
